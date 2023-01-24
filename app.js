@@ -29,8 +29,8 @@ function app(people) {
             searchResults = searchByName(people);
             break;
         case "no":
-            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
-                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
+            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////                                                           ************************
+                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////                                                          ************************
             searchResults = searchByTraits(people);
             break;
         default:
@@ -42,6 +42,13 @@ function app(people) {
     mainMenu(searchResults, people);
 }
 // End of app()
+
+
+
+
+
+
+
 
 /**
  * After finding a single person, we pass in the entire person-object that we found,
@@ -64,19 +71,19 @@ function mainMenu(person, people) {
     // Routes our application based on the user's input
     switch (displayOption) {
         case "info":
-            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
+            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////                                                           ************************
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
         case "family":
-            //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
+            //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////                                                           ************************
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
             alert(personFamily);
             break;
         case "descendants":
-            //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
+            //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////                                                      ************************
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
             alert(personDescendants);
@@ -95,6 +102,17 @@ function mainMenu(person, people) {
 }
 // End of mainMenu()
 
+
+
+
+
+
+
+
+
+
+
+
 /**
  * This function is used when searching the people collection by
  * a person-object's firstName and lastName properties.
@@ -103,7 +121,9 @@ function mainMenu(person, people) {
  */
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
+       // firstName = firstName.toUpperCase(), chars;
     let lastName = promptFor("What is the person's last name?", chars);
+        //lastName = lastName.toUpperCase(), chars;
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
@@ -114,6 +134,25 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -132,6 +171,21 @@ function displayPeople(people) {
 }
 // End of displayPeople()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * This function will be useful for STRINGIFYING a person-object's properties
  * in order to easily send the information to the user in the form of an alert().
@@ -140,10 +194,33 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
-    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
+    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           ************************
     alert(personInfo);
 }
 // End of displayPerson()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * This function's purpose is twofold:
@@ -153,6 +230,7 @@ function displayPerson(person) {
  * @param {Function} valid      A callback function used to validate basic user input.
  * @returns {String}            The valid string input retrieved from the user.
  */
+/*
 function promptFor(question, valid) {
     do {
         var response = prompt(question).trim();
@@ -160,6 +238,25 @@ function promptFor(question, valid) {
     return response;
 }
 // End of promptFor()
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * This helper function checks to see if the value passed into input is a "yes" or "no."
@@ -171,16 +268,210 @@ function yesNo(input) {
 }
 // End of yesNo()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * This helper function operates as a default callback for promptFor's validation.
  * Feel free to modify this to suit your needs.
  * @param {String} input        A string.
  * @returns {Boolean}           Default validation -- no logic yet.
  */
+
+/*
 function chars(input) {
     return true; // Default validation only
 }
+*/
+
+
+
 // End of chars()
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
+
+
+
+/*
+( /5 points): As a developer, I want to make at least 15 consistent commits 
+with good, descriptive messages.
+*/
+1
+
+
+
+
+
+
+
+
+
+/*
+( /5 points): As a developer, I want to run validation on any user input, 
+ensuring that a user is re-prompted when they provide invalid input.
+*/
+
+// Name Validator
+
+function promptFor(question, valid) {
+    do {
+        var response = prompt(question).trim();
+        response = correctEntry(response);
+    } while (!response || !valid(response));
+    return response;
+}
+
+function chars(input) {
+    return true; // Default validation only
+}
+
+
+function correctEntry(input) {
+    let name = input[0].toUpperCase() + input.slice(1);
+    return name;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+( /10 points): As a user, I want to be able to search for someone based on 
+a single criterion • You should be able to find and return a list of people 
+who match the search
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+( /15 points): As a user, I want to be able to search for someone based on 
+multiple traits (up to a maximum of five criteria at once).
+• i.e., if you search for Gender: male and Eye Color: blue, you should get 
+back a list of people who match the search. In this case, it will be only 
+people who are male with blue eyes.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+( /10 points): As a user, I want to be able to look up someone’s information 
+after I find them with the program (display values for the various traits 
+of the found person).
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+( /15 points): As a user, after locating a person, I want to see only that 
+person’s descendants (display the names of the descendants).
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+( /15 points): As a user, after locating a person, I want to see only that 
+person’s immediate family members, displaying the names of the family members 
+and their relation to the found person. (i.e., parents, spouse, siblings.)
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
