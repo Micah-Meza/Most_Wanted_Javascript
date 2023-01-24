@@ -69,25 +69,33 @@ function mainMenu(person, people) {
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
     // Routes our application based on the user's input
-    switch (displayOption) {
+    switch (displayOption.toLowerCase()) {
         case "info":
-            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////                                                           ************************
+            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////                                                           ************************DONE
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
+
+
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////                                                           ************************
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
             alert(personFamily);
             break;
+
+
+
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////                                                      ************************
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
             alert(personDescendants);
             break;
+
+
+
         case "restart":
             // Restart app() from the very beginning
             app(people);
@@ -182,18 +190,24 @@ function displayPeople(people) {
 
 
 
-
-
-
-
 /**
  * This function will be useful for STRINGIFYING a person-object's properties
  * in order to easily send the information to the user in the form of an alert().
  * @param {Object} person       A singular object.
  */
 function displayPerson(person) {
-    let personInfo = `First Name: ${person.firstName}\n`;
+    let personInfo = `Id: ${person.id}\n`;
+    personInfo += `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eye Color: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
+    personInfo += `Parents: ${person.parents}\n`;
+    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
+
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           ************************
     alert(personInfo);
 }
@@ -301,11 +315,10 @@ function yesNo(input) {
  * @returns {Boolean}           Default validation -- no logic yet.
  */
 
-/*
+
 function chars(input) {
     return true; // Default validation only
 }
-*/
 
 
 
@@ -337,7 +350,7 @@ with good, descriptive messages.
 ensuring that a user is re-prompted when they provide invalid input.
 */
 
-// Name Validator
+// Input Validator
 
 function promptFor(question, valid) {
     do {
@@ -347,26 +360,10 @@ function promptFor(question, valid) {
     return response;
 }
 
-function chars(input) {
-    return true; // Default validation only
-}
-
-
 function correctEntry(input) {
     let name = input[0].toUpperCase() + input.slice(1);
     return name;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
