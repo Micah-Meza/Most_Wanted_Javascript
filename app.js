@@ -44,12 +44,6 @@ function app(people) {
 // End of app()
 
 
-
-
-
-
-
-
 /**
  * After finding a single person, we pass in the entire person-object that we found,
  * as well as the entire original dataset of people. We need people in order to find
@@ -65,25 +59,28 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    let displayOption = prompt(
-        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
-    );
+    let displayOption = "family" //prompt(
+//        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
+//    );
     // Routes our application based on the user's input
     switch (displayOption.toLowerCase()) {
         case "info":
-            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////                                                           ************************DONE
+            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////                                                           DONE
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
-
-
         case "family":
-            //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////                                                           ************************
+            //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////                                                           DONE
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+            alert(`The family members are: ${personFamily}`);
             break;
+
+
+                       
+        
+        
 
 
 
@@ -111,16 +108,6 @@ function mainMenu(person, people) {
 // End of mainMenu()
 
 
-
-
-
-
-
-
-
-
-
-
 /**
  * This function is used when searching the people collection by
  * a person-object's firstName and lastName properties.
@@ -128,10 +115,10 @@ function mainMenu(person, people) {
  * @returns {Array}             An array containing the person-object (or empty array if no match)
  */
 function searchByName(people) {
-    let firstName = promptFor("What is the person's first name?", chars);
-       // firstName = firstName.toUpperCase(), chars;
-    let lastName = promptFor("What is the person's last name?", chars);
-        //lastName = lastName.toUpperCase(), chars;
+    ////////////////////////////////////////////////////////////////////////////////// let firstName = promptFor("What is the person's first name?", chars);
+    let firstName = "Jasmine"
+    /////////////////////////////////////////////////////////////////////////////////let lastName = promptFor("What is the person's last name?", chars);
+    let lastName = "Bob"
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
@@ -144,30 +131,13 @@ function searchByName(people) {
 // End of searchByName()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
  * first and last name properties in order to easily send the information
  * to the user in the form of an alert().
  * @param {Array} people        A collection of person objects.
  */
+/*
 function displayPeople(people) {
     alert(
         people
@@ -178,16 +148,7 @@ function displayPeople(people) {
     );
 }
 // End of displayPeople()
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 /**
@@ -195,45 +156,17 @@ function displayPeople(people) {
  * in order to easily send the information to the user in the form of an alert().
  * @param {Object} person       A singular object.
  */
+/*
 function displayPerson(person) {
-    let personInfo = `Id: ${person.id}\n`;
-    personInfo += `First Name: ${person.firstName}\n`;
-    personInfo += `Last Name: ${person.lastName}\n`;
-    personInfo += `Gender: ${person.gender}\n`;
-    personInfo += `DOB: ${person.dob}\n`;
-    personInfo += `Height: ${person.height}\n`;
-    personInfo += `Weight: ${person.weight}\n`;
-    personInfo += `Eye Color: ${person.eyeColor}\n`;
-    personInfo += `Occupation: ${person.occupation}\n`;
-    personInfo += `Parents: ${person.parents}\n`;
-    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
+    let personInfo = `First Name: ${person.firstName}\n`;
+   
 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           ************************
     alert(personInfo);
 }
 // End of displayPerson()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 /**
@@ -256,22 +189,6 @@ function promptFor(question, valid) {
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * This helper function checks to see if the value passed into input is a "yes" or "no."
  * @param {String} input        A string that will be normalized via .toLowerCase().
@@ -281,30 +198,6 @@ function yesNo(input) {
     return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
 }
 // End of yesNo()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -324,7 +217,7 @@ function chars(input) {
 
 // End of chars()
 
-//////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////* End Of Starter Code *////////////////////////////////////////////////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 
@@ -335,15 +228,8 @@ function chars(input) {
 ( /5 points): As a developer, I want to make at least 15 consistent commits 
 with good, descriptive messages.
 */
-1
 
-
-
-
-
-
-
-
+// 3
 
 /*
 ( /5 points): As a developer, I want to run validation on any user input, 
@@ -364,8 +250,6 @@ function correctEntry(input) {
     let name = input[0].toUpperCase() + input.slice(1);
     return name;
 }
-
-
 
 /*
 ( /10 points): As a user, I want to be able to search for someone based on 
@@ -409,6 +293,49 @@ after I find them with the program (display values for the various traits
 of the found person).
 */
 
+function displayPerson(person) {
+    let personInfo = `Id: ${person.id}\n`;
+    personInfo += `First Name: ${person.firstName}\n`;
+    personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eye Color: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
+    personInfo += `Parents: ${person.parents}\n`;
+    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
+
+    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           ************************
+    alert(personInfo);
+}
+
+
+/*
+( /15 points): As a user, after locating a person, I want to see only that 
+person’s descendants (display the names of the descendants).
+*/
+
+
+
+function findPersonFamily(person, people) {
+
+    let allPeople = people.filter(function(fam) {
+    if (person.parents.includes(fam.id) || person.currentSpouse === fam.id) {
+        let family = fam;   
+            return true;
+        } 
+    });
+        let results = allPeople.map(function(type){
+        return ` ${type.firstName} ${type.lastName}`
+       })
+       return results;
+    }
+
+
+
+
+
 
 
 
@@ -428,17 +355,24 @@ of the found person).
 
 
 /*
-( /15 points): As a user, after locating a person, I want to see only that 
-person’s descendants (display the names of the descendants).
+
+function findPersonFamily(person, people) {
+    let allPeople = people.filter(function(fam) {
+    if (person.currentSpouse === null  || person.currentSpouse === [] ) {
+           return false;
+    } else {
+        }
+        let family = person.currentSpouse;
+        
+    if (fam.id === family){
+    
+        displayPeople(fam);
+    }
+    return false;
+    }
+)}
+
 */
-
-
-
-
-
-
-
-
 
 
 
@@ -452,12 +386,6 @@ person’s descendants (display the names of the descendants).
 person’s immediate family members, displaying the names of the family members 
 and their relation to the found person. (i.e., parents, spouse, siblings.)
 */
-
-
-
-
-
-
 
 
 
