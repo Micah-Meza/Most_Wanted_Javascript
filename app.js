@@ -59,9 +59,10 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    let displayOption = "family" //prompt(
-//        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
-//    );
+    let displayOption = "descendants"
+    // let displayOption = prompt(
+        // `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
+    // );
     // Routes our application based on the user's input
     switch (displayOption.toLowerCase()) {
         case "info":
@@ -70,19 +71,13 @@ function mainMenu(person, people) {
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
+
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////                                                           DONE
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
             alert(`The family members are: ${personFamily}`);
             break;
-
-
-                       
-        
-        
-
-
 
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////                                                      ************************
@@ -91,15 +86,15 @@ function mainMenu(person, people) {
             alert(personDescendants);
             break;
 
-
-
         case "restart":
             // Restart app() from the very beginning
             app(people);
             break;
+            
         case "quit":
             // Stop application execution
             return;
+
         default:
             // Prompt user again. Another instance of recursion
             return mainMenu(person, people);
@@ -115,9 +110,9 @@ function mainMenu(person, people) {
  * @returns {Array}             An array containing the person-object (or empty array if no match)
  */
 function searchByName(people) {
-    ////////////////////////////////////////////////////////////////////////////////// let firstName = promptFor("What is the person's first name?", chars);
-    let firstName = "Jasmine"
-    /////////////////////////////////////////////////////////////////////////////////let lastName = promptFor("What is the person's last name?", chars);
+    // let firstName = promptFor("What is the person's first name?", chars);//////////////////////////////////////////////////////////////////////////////////
+    let firstName = "Uma"
+    // let lastName = promptFor("What is the person's last name?", chars);/////////////////////////////////////////////////////////////////////////////////
     let lastName = "Bob"
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
@@ -137,7 +132,7 @@ function searchByName(people) {
  * to the user in the form of an alert().
  * @param {Array} people        A collection of person objects.
  */
-/*
+
 function displayPeople(people) {
     alert(
         people
@@ -148,7 +143,7 @@ function displayPeople(people) {
     );
 }
 // End of displayPeople()
-*/
+
 
 
 /**
@@ -156,17 +151,16 @@ function displayPeople(people) {
  * in order to easily send the information to the user in the form of an alert().
  * @param {Object} person       A singular object.
  */
-/*
+
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
    
 
-    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           ************************
+    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           Done
     alert(personInfo);
 }
 // End of displayPerson()
 
-*/
 
 
 /**
@@ -229,7 +223,7 @@ function chars(input) {
 with good, descriptive messages.
 */
 
-// 3
+// 5
 
 /*
 ( /5 points): As a developer, I want to run validation on any user input, 
@@ -317,11 +311,10 @@ person’s descendants (display the names of the descendants).
 */
 
 
-
-function findPersonFamily(person, people) {
+function findPersonDescendants(person, people) {
 
     let allPeople = people.filter(function(fam) {
-    if (person.parents.includes(fam.id) || person.currentSpouse === fam.id) {
+    if (fam.parents.includes(person.id)) {
         let family = fam;   
             return true;
         } 
@@ -333,70 +326,22 @@ function findPersonFamily(person, people) {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-function findPersonFamily(person, people) {
-    let allPeople = people.filter(function(fam) {
-    if (person.currentSpouse === null  || person.currentSpouse === [] ) {
-           return false;
-    } else {
-        }
-        let family = person.currentSpouse;
-        
-    if (fam.id === family){
-    
-        displayPeople(fam);
-    }
-    return false;
-    }
-)}
-
-*/
-
-
-
-
-
-
-
-
 /*
 ( /15 points): As a user, after locating a person, I want to see only that 
 person’s immediate family members, displaying the names of the family members 
 and their relation to the found person. (i.e., parents, spouse, siblings.)
 */
 
+function findPersonFamily(person, people) {
 
-
-
-
-
-
-
-
-
-
-
-
-
+    let allPeople = people.filter(function(fam) {
+    if (person.parents.includes(fam.id) || person.currentSpouse === fam.id || fam.parents.includes(person.id) || person.parents[0] == fam.parents[0]) {
+        let family = fam;   
+            return true;
+        } 
+    });
+        let results = allPeople.map(function(type){
+        return ` ${type.firstName} ${type.lastName}`
+       })
+       return results;
+    }
