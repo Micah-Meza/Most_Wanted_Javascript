@@ -59,7 +59,7 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    let displayOption = "descendants"
+    let displayOption = "info"
     // let displayOption = prompt(
         // `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     // );
@@ -80,7 +80,7 @@ function mainMenu(person, people) {
             break;
 
         case "descendants":
-            //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////                                                      ************************
+            //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////                                                      DONE
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
             alert(personDescendants);
@@ -269,6 +269,73 @@ back a list of people who match the search. In this case, it will be only
 people who are male with blue eyes.
 */
 
+/*
+function searchByTraits(people){
+    let choice = []
+    choice = prompt("What trait would like to look for? ")
+    let value = []
+    value = prompt(`What is their ${choice}?`)
+    let x = 0;
+    let persons = people.filter(function(person){
+        if (value === person.choice[0]){
+           people = person;
+           return true;
+            {   
+                return false;
+            } 
+        }
+    });
+            let results = persons.map(function(type){
+            alert(` ${type.firstName} ${type.lastName}`)
+           })
+           alert(results)
+        }
+
+
+*/
+
+
+
+
+function searchByTraits(people){
+    let choice = []
+    let num = parseInt(prompt("How many traits would like to look for? "))
+    for (let i = 0; i < num; i++){
+    choice.push(prompt(`Please list at least ${num} trait(s). `));
+    }
+    let x = 0;
+    let persons = people.filter(function(person){
+        if (choice.includes(person.gender) &&
+            choice.includes(person.eyeColor) ||
+            choice[2] === person.lastName ||
+            choice[3] === person.gender ||
+            choice[4] === person.dob ||
+            choice === person.height ||
+            choice === person.weight ||
+            choice === person.eyeColor ||
+            choice === person.occupation ||
+            choice === person.parents ||
+            choice === person.currentSpouse 
+            ){ 
+                let family = person;   
+                return true;
+            } 
+        }
+        );
+            let results = persons.map(function(type){
+            alert(` ${type.firstName} ${type.lastName}`)
+           })
+           alert(results)
+        }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -282,10 +349,100 @@ people who are male with blue eyes.
 
 
 /*
+
+function searchByTraits(people){
+    let choice = []
+    let num = parseInt(prompt("How many traits would like to look for? "))
+    for (let i = 0; i < num; i++){
+    choice.push(prompt(`Please list at least ${num} trait(s). `));
+    }
+    let x = 0;
+    let persons = people.filter(function(person){
+        if (choice === person.id ||
+            choice === person.firstName ||
+            choice === person.lastName ||
+            choice === person.gender ||
+            choice === person.dob ||
+            choice === person.height ||
+            choice === person.weight ||
+            choice === person.eyeColor ||
+            choice === person.occupation ||
+            choice === person.parents ||
+            choice === person.currentSpouse 
+            ){ 
+                let family = person;   
+                return true;
+            } 
+        }
+        );
+            let results = persons.map(function(type){
+            alert(` ${type.firstName} ${type.lastName}`)
+           })
+           alert(results)
+        }
+
+*/
+/**************************************************************************
+        const people = [
+            { name: "Alice", age: 21 },
+            { name: "Max", age: 20 },
+            { name: "Jane", age: 20 },
+          ];
+          
+          function groupBy(objectArray, property) {
+            return objectArray.reduce((acc, obj) => {
+              const key = obj[property];
+              const curGroup = acc[key] ?? [];
+          
+              return { ...acc, [key]: [...curGroup, obj] };
+            }, {});
+          }
+          
+          const groupedPeople = groupBy(people, "age");
+          console.log(groupedPeople);
+          // {
+          //   20: [
+          //     { name: 'Max', age: 20 },
+          //     { name: 'Jane', age: 20 }
+          //   ],
+          //   21: [{ name: 'Alice', age: 21 }]
+          // }
+*/////////////////////////////////////////////////////////////////
+/*
+
+function searchByTraits(people){
+    let choice = []
+    let num = parseInt(prompt("How many traits would you like to look for? "))
+    for (let i = 0; i < num; i++){
+    choice.push(prompt(`Please list at least ${num} trait(s). `));
+    }
+    let person = people.reduce((i, perp) => {
+        if (choice.includes(perp) ){
+            return perp.firstName;
+        }
+        return perp;
+    }, 0)
+alert(`${perp.firstName} ${perp.lastName}`)
+
+}
+
+
+
+*/
+
+
+
+
+
+
+
+
+/*
 ( /10 points): As a user, I want to be able to look up someone’s information 
 after I find them with the program (display values for the various traits 
 of the found person).
 */
+
 
 function displayPerson(person) {
     let personInfo = `Id: ${person.id}\n`;
@@ -305,12 +462,15 @@ function displayPerson(person) {
 }
 
 
+
+
+
 /*
 ( /15 points): As a user, after locating a person, I want to see only that 
 person’s descendants (display the names of the descendants).
 */
 
-
+/*
 function findPersonDescendants(person, people) {
 
     let allPeople = people.filter(function(fam) {
@@ -324,7 +484,7 @@ function findPersonDescendants(person, people) {
        })
        return results;
     }
-
+*/
 
 /*
 ( /15 points): As a user, after locating a person, I want to see only that 
@@ -345,3 +505,38 @@ function findPersonFamily(person, people) {
        })
        return results;
     }
+
+
+
+/**    Bonus                                                                                Incomplete...............
+
+( /5 points): As a user, after locating a person, I want to see only 
+that person’s descendants (display the names of the descendants), 
+using recursion.
+*/
+/*
+function findPersonDescendants(person, people) {
+    let peoples = people
+    let i = 0;
+    if (peoples[i].parents === person.id && peoples[i].parents != null){
+        let array = people;
+        return people;
+    } else { 
+        
+        // i++;
+        return findPersonDescendants(person, people[i++]) 
+    }
+    let results = array;
+    return results;
+}
+*/
+
+
+
+
+
+
+
+
+
+
