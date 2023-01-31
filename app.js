@@ -59,10 +59,10 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    let displayOption = "info"
-    // let displayOption = prompt(
-        // `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
-    // );
+    //let displayOption = "info" // Test value
+    let displayOption = prompt(
+        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
+    );
     // Routes our application based on the user's input
     switch (displayOption.toLowerCase()) {
         case "info":
@@ -110,10 +110,10 @@ function mainMenu(person, people) {
  * @returns {Array}             An array containing the person-object (or empty array if no match)
  */
 function searchByName(people) {
-    // let firstName = promptFor("What is the person's first name?", chars);//////////////////////////////////////////////////////////////////////////////////
-    let firstName = "Uma"
-    // let lastName = promptFor("What is the person's last name?", chars);/////////////////////////////////////////////////////////////////////////////////
-    let lastName = "Bob"
+    let firstName = promptFor("What is the person's first name?", chars);//////////////////////////////////////////////////////////////////////////////////
+    //let firstName = "Uma" // Test values
+     let lastName = promptFor("What is the person's last name?", chars);/////////////////////////////////////////////////////////////////////////////////
+    //let lastName = "Bob" // Test values
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
@@ -269,33 +269,6 @@ back a list of people who match the search. In this case, it will be only
 people who are male with blue eyes.
 */
 
-/*
-function searchByTraits(people){
-    let choice = []
-    choice = prompt("What trait would like to look for? ")
-    let value = []
-    value = prompt(`What is their ${choice}?`)
-    let x = 0;
-    let persons = people.filter(function(person){
-        if (value === person.choice[0]){
-           people = person;
-           return true;
-            {   
-                return false;
-            } 
-        }
-    });
-            let results = persons.map(function(type){
-            alert(` ${type.firstName} ${type.lastName}`)
-           })
-           alert(results)
-        }
-
-
-*/
-
-
-
 
 function searchByTraits(people){
     let choice = []
@@ -307,132 +280,23 @@ function searchByTraits(people){
     let persons = people.filter(function(person){
         if (choice.includes(person.gender) &&
             choice.includes(person.eyeColor) ||
-            choice[2] === person.lastName ||
-            choice[3] === person.gender ||
-            choice[4] === person.dob ||
-            choice === person.height ||
-            choice === person.weight ||
-            choice === person.eyeColor ||
-            choice === person.occupation ||
-            choice === person.parents ||
-            choice === person.currentSpouse 
+            choice.includes(person.dob) ||
+            choice.includes(person.height) ||
+            choice.includes(person.weight) ||         
+            //choice.includes(person.firstName) ||  I'm not sure if these counts as traits.
+            //choice.includes(person.lastName) ||
+            //choice.includes(person.parents) ||
+            //choice.includes(person.currentSpouse) ||
+            choice.includes(person.occupation) 
             ){ 
-                let family = person;   
                 return true;
             } 
         }
         );
-            let results = persons.map(function(type){
-            alert(` ${type.firstName} ${type.lastName}`)
-           })
-           alert(results)
+            displayPeople(persons)
+           return persons;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-function searchByTraits(people){
-    let choice = []
-    let num = parseInt(prompt("How many traits would like to look for? "))
-    for (let i = 0; i < num; i++){
-    choice.push(prompt(`Please list at least ${num} trait(s). `));
-    }
-    let x = 0;
-    let persons = people.filter(function(person){
-        if (choice === person.id ||
-            choice === person.firstName ||
-            choice === person.lastName ||
-            choice === person.gender ||
-            choice === person.dob ||
-            choice === person.height ||
-            choice === person.weight ||
-            choice === person.eyeColor ||
-            choice === person.occupation ||
-            choice === person.parents ||
-            choice === person.currentSpouse 
-            ){ 
-                let family = person;   
-                return true;
-            } 
-        }
-        );
-            let results = persons.map(function(type){
-            alert(` ${type.firstName} ${type.lastName}`)
-           })
-           alert(results)
-        }
-
-*/
-/**************************************************************************
-        const people = [
-            { name: "Alice", age: 21 },
-            { name: "Max", age: 20 },
-            { name: "Jane", age: 20 },
-          ];
-          
-          function groupBy(objectArray, property) {
-            return objectArray.reduce((acc, obj) => {
-              const key = obj[property];
-              const curGroup = acc[key] ?? [];
-          
-              return { ...acc, [key]: [...curGroup, obj] };
-            }, {});
-          }
-          
-          const groupedPeople = groupBy(people, "age");
-          console.log(groupedPeople);
-          // {
-          //   20: [
-          //     { name: 'Max', age: 20 },
-          //     { name: 'Jane', age: 20 }
-          //   ],
-          //   21: [{ name: 'Alice', age: 21 }]
-          // }
-*/////////////////////////////////////////////////////////////////
-/*
-
-function searchByTraits(people){
-    let choice = []
-    let num = parseInt(prompt("How many traits would you like to look for? "))
-    for (let i = 0; i < num; i++){
-    choice.push(prompt(`Please list at least ${num} trait(s). `));
-    }
-    let person = people.reduce((i, perp) => {
-        if (choice.includes(perp) ){
-            return perp.firstName;
-        }
-        return perp;
-    }, 0)
-alert(`${perp.firstName} ${perp.lastName}`)
-
-}
-
-
-
-*/
-
-
-
-
+    
 
 
 
@@ -457,11 +321,9 @@ function displayPerson(person) {
     personInfo += `Parents: ${person.parents}\n`;
     personInfo += `Current Spouse: ${person.currentSpouse}\n`;
 
-    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           ************************
+    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           Done
     alert(personInfo);
 }
-
-
 
 
 
@@ -470,7 +332,6 @@ function displayPerson(person) {
 person’s descendants (display the names of the descendants).
 */
 
-/*
 function findPersonDescendants(person, people) {
 
     let allPeople = people.filter(function(fam) {
@@ -484,7 +345,6 @@ function findPersonDescendants(person, people) {
        })
        return results;
     }
-*/
 
 /*
 ( /15 points): As a user, after locating a person, I want to see only that 
