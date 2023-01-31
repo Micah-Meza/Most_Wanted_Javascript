@@ -255,7 +255,6 @@ function searchByTraits(people){
         case 1:
             let singlePerson = searchBySingleTraits(people);
             return singlePerson;
-            break;
 
         case 2:
             let person = searchByMultipleTraits(people);
@@ -270,23 +269,20 @@ function searchByTraits(people){
 
 
 function searchBySingleTraits(people){
-    let choice = []
-    let num = parseInt(prompt("How many traits would like to look for? "))
-    for (let i = 0; i < num; i++){
-    choice.push(prompt(`Please list at least ${num} trait(s). `));
-    }
-    let x = 0;
+    let choice = prompt(`Please enter in one of these trait(s).\n1. Gender\n2. Eye Color\n3. Date of Birth\n4. Height\n5. Weight `);
+    choice.toLowerCase(choice);
+
     let group = people.filter(function(person){
-        if (choice.includes(person.gender) &&
-            choice.includes(person.eyeColor) ||
-            choice.includes(person.dob) ||
-            choice.includes(person.height) ||
-            choice.includes(person.weight) ||         
-            //choice.includes(person.firstName) ||  I'm not sure if these counts as traits.
-            //choice.includes(person.lastName) ||
-            //choice.includes(person.parents) ||
-            //choice.includes(person.currentSpouse) ||
-            choice.includes(person.occupation) 
+        if (choice === person.gender ||
+            choice === person.eyeColor ||
+            choice === person.dob ||
+            choice === person.height ||
+            choice === person.weight ||         
+            //choice === person.firstName ||  I'm not sure if these counts as traits.
+            //choice === person.lastName ||
+            //choice === person.parents ||
+            //choice === person.currentSpouse) ||
+            choice === person.occupation 
             ){ 
                 return true;
             } 
