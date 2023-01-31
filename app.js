@@ -59,7 +59,6 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    //let displayOption = "info" // Test value
     let displayOption = prompt(
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
@@ -111,9 +110,9 @@ function mainMenu(person, people) {
  */
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);//////////////////////////////////////////////////////////////////////////////////
-    //let firstName = "Uma" // Test values
+    
      let lastName = promptFor("What is the person's last name?", chars);/////////////////////////////////////////////////////////////////////////////////
-    //let lastName = "Bob" // Test values
+   
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
@@ -223,7 +222,7 @@ function chars(input) {
 with good, descriptive messages.
 */
 
-// 5
+// 8
 
 /*
 ( /5 points): As a developer, I want to run validation on any user input, 
@@ -252,9 +251,33 @@ who match the search
 */
 
 
-
-
-
+function searchByTraits(people){
+    let choice = []
+    let num = parseInt(prompt("How many traits would like to look for? "))
+    for (let i = 0; i < num; i++){
+    choice.push(prompt(`Please list at least ${num} trait(s). `));
+    }
+    let x = 0;
+    let persons = people.filter(function(person){
+        if (choice.includes(person.gender) &&
+            choice.includes(person.eyeColor) ||
+            choice.includes(person.dob) ||
+            choice.includes(person.height) ||
+            choice.includes(person.weight) ||         
+            //choice.includes(person.firstName) ||  I'm not sure if these counts as traits.
+            //choice.includes(person.lastName) ||
+            //choice.includes(person.parents) ||
+            //choice.includes(person.currentSpouse) ||
+            choice.includes(person.occupation) 
+            ){ 
+                return true;
+            } 
+        }
+        );
+            displayPeople(persons)
+           return persons;
+        }
+    
 
 
 
@@ -270,7 +293,7 @@ people who are male with blue eyes.
 */
 
 
-function searchByTraits(people){
+function searchByTraitsMultiple(people){
     let choice = []
     let num = parseInt(prompt("How many traits would like to look for? "))
     for (let i = 0; i < num; i++){
