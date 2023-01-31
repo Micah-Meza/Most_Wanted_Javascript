@@ -111,7 +111,7 @@ function mainMenu(person, people) {
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);//////////////////////////////////////////////////////////////////////////////////
     
-     let lastName = promptFor("What is the person's last name?", chars);/////////////////////////////////////////////////////////////////////////////////
+    let lastName = promptFor("What is the person's last name?", chars);/////////////////////////////////////////////////////////////////////////////////
    
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
@@ -170,7 +170,8 @@ function displayPerson(person) {
  * @param {Function} valid      A callback function used to validate basic user input.
  * @returns {String}            The valid string input retrieved from the user.
  */
-/*
+
+
 function promptFor(question, valid) {
     do {
         var response = prompt(question).trim();
@@ -178,8 +179,6 @@ function promptFor(question, valid) {
     return response;
 }
 // End of promptFor()
-
-*/
 
 
 /**
@@ -250,15 +249,34 @@ a single criterion • You should be able to find and return a list of people
 who match the search
 */
 
-
 function searchByTraits(people){
+    let selection = parseInt(prompt("Would you like to search by:\n1. (A single trait)\n2. (Multiple traits)\nPlease select 1 or 2."))
+    switch (selection) {
+        case 1:
+            let singlePerson = searchBySingleTraits(people);
+            return singlePerson;
+            break;
+
+        case 2:
+            let person = searchByMultipleTraits(people);
+            return person;
+
+        default:
+            alert("Thats not a valid number.\nTry again.")
+            searchByTraits(people)
+            break;
+    }
+}
+
+
+function searchBySingleTraits(people){
     let choice = []
     let num = parseInt(prompt("How many traits would like to look for? "))
     for (let i = 0; i < num; i++){
     choice.push(prompt(`Please list at least ${num} trait(s). `));
     }
     let x = 0;
-    let persons = people.filter(function(person){
+    let group = people.filter(function(person){
         if (choice.includes(person.gender) &&
             choice.includes(person.eyeColor) ||
             choice.includes(person.dob) ||
@@ -274,10 +292,19 @@ function searchByTraits(people){
             } 
         }
         );
-            displayPeople(persons)
-           return persons;
+            displayPeople(group)
+           return group;
         }
     
+
+
+
+
+
+
+
+
+
 
 
 
@@ -293,14 +320,14 @@ people who are male with blue eyes.
 */
 
 
-function searchByTraitsMultiple(people){
+function searchByMultipleTraits(people){
     let choice = []
     let num = parseInt(prompt("How many traits would like to look for? "))
     for (let i = 0; i < num; i++){
     choice.push(prompt(`Please list at least ${num} trait(s). `));
     }
     let x = 0;
-    let persons = people.filter(function(person){
+    let group = people.filter(function(person){
         if (choice.includes(person.gender) &&
             choice.includes(person.eyeColor) ||
             choice.includes(person.dob) ||
@@ -316,8 +343,8 @@ function searchByTraitsMultiple(people){
             } 
         }
         );
-            displayPeople(persons)
-           return persons;
+            displayPeople(group)
+           return group;
         }
     
 
