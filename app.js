@@ -271,26 +271,24 @@ function searchBySingleTraits(people){
         choice = choice.parseInt()
     }{ 
 }
-
     let group = people.filter(function(person){
         if (choice === person.gender ||
-            choice === person.eyeColor ||
-            choice === person.dob ||
-            choice == person.height ||
-            choice == person.weight ||         
-            //choice === person.firstName ||  I'm not sure if these counts as traits.
-            //choice === person.lastName ||
-            //choice === person.parents ||
-            //choice === person.currentSpouse) ||
-            choice === person.occupation 
+                choice === person.eyeColor ||
+                    choice === person.dob ||
+                        choice == person.height ||
+                            choice == person.weight ||         
+                                //choice === person.firstName ||  I'm not sure if these counts as traits.
+                                    //choice === person.lastName ||
+                                        //choice === person.parents ||
+                                            //choice === person.currentSpouse) ||
+                                                choice === person.occupation 
             ){ 
-                return true;
+            return true;
             } 
-        }
-        );
-            displayPeople(group)
-            return group;
-        }
+    });
+    displayPeople(group)
+    return group;
+}
     
 /*
 ( /15 points): As a user, I want to be able to search for someone based on 
@@ -306,29 +304,28 @@ function searchByMultipleTraits(people){
     let x = 1;
     let num = parseInt(prompt("How many traits would like to look for? "))
     for (let i = 0; i < num; i++){
-    choice.push(prompt(`List trait number ${x}. `).toLowerCase());
-    x++
+        choice.push(prompt(`List trait number ${x}. `).toLowerCase());
+        x++
     }
    
     let group = people.filter(function(person){
         if (choice.includes(person.gender) &&
-            choice.includes(person.eyeColor) ||
-            choice.includes(person.dob) ||
-            choice.includes(person.height) ||
-            choice.includes(person.weight) ||         
-            //choice.includes(person.firstName) ||  I'm not sure if these counts as traits.
-            //choice.includes(person.lastName) ||
-            //choice.includes(person.parents) ||
-            //choice.includes(person.currentSpouse) ||
-            choice.includes(person.occupation) 
+                choice.includes(person.eyeColor) ||
+                    choice.includes(person.dob) ||
+                        choice.includes(person.height) ||
+                            choice.includes(person.weight) ||         
+                                //choice.includes(person.firstName) ||  I'm not sure if these counts as traits.
+                                    //choice.includes(person.lastName) ||
+                                        //choice.includes(person.parents) ||
+                                            //choice.includes(person.currentSpouse) ||
+                                                choice.includes(person.occupation) 
             ){ 
                 return true;
             } 
-        }
-        );
-            displayPeople(group)
+    });
+        displayPeople(group)
            return group;
-        }
+}
     
 
 /*
@@ -340,16 +337,16 @@ of the found person).
 
 function displayPerson(person) {
     let personInfo = `Id: ${person.id}\n`;
-    personInfo += `First Name: ${person.firstName}\n`;
-    personInfo += `Last Name: ${person.lastName}\n`;
-    personInfo += `Gender: ${person.gender}\n`;
-    personInfo += `DOB: ${person.dob}\n`;
-    personInfo += `Height: ${person.height}\n`;
-    personInfo += `Weight: ${person.weight}\n`;
-    personInfo += `Eye Color: ${person.eyeColor}\n`;
-    personInfo += `Occupation: ${person.occupation}\n`;
-    personInfo += `Parents: ${person.parents}\n`;
-    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
+            personInfo += `First Name: ${person.firstName}\n`;
+            personInfo += `Last Name: ${person.lastName}\n`;
+            personInfo += `Gender: ${person.gender}\n`;
+            personInfo += `DOB: ${person.dob}\n`;
+            personInfo += `Height: ${person.height}\n`;
+            personInfo += `Weight: ${person.weight}\n`;
+            personInfo += `Eye Color: ${person.eyeColor}\n`;
+            personInfo += `Occupation: ${person.occupation}\n`;
+            personInfo += `Parents: ${person.parents}\n`;
+            personInfo += `Current Spouse: ${person.currentSpouse}\n`;
 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           Done
     alert(personInfo);
@@ -364,16 +361,16 @@ person’s descendants (display the names of the descendants).
 function findPersonDescendants(person, people) {
 
     let allPeople = people.filter(function(fam) {
-    if (fam.parents.includes(person.id)) {
-        let family = fam;   
+        if (fam.parents.includes(person.id)) {
+            let family = fam;   
             return true;
         } 
     });
-        let results = allPeople.map(function(type){
+    let results = allPeople.map(function(type){
         return ` ${type.firstName} ${type.lastName}`
-       })
-       return results;
-    }
+    })
+    return results;
+}
 
 /*
 ( /15 points): As a user, after locating a person, I want to see only that 
@@ -384,8 +381,7 @@ and their relation to the found person. (i.e., parents, spouse, siblings.)
 function findPersonFamily(person, people) {
 
     let allPeople = people.filter(function(fam) {
-    if (fam.parents == [] && person.parents.includes(fam.id) || person.currentSpouse === fam.id || fam.parents.includes(person.id) || fam.parents[0] == person.parents[0]) {
-        let family = fam;   
+    if (person.parents.includes(fam.id) || person.currentSpouse == fam.id || fam.parents.includes(person.id) || person.parents[0] === fam.parents[0]) { 
             return true;
         } 
     });
