@@ -261,7 +261,7 @@ function searchByTraits(people){
             return person;
 
         default:
-            alert("Thats not a valid number.\nTry again.")
+            alert("Thats not a valid selection.\nTry again.")
             searchByTraits(people)
             break;
     }
@@ -269,15 +269,19 @@ function searchByTraits(people){
 
 
 function searchBySingleTraits(people){
-    let choice = prompt(`Please enter in one of these trait(s).\n1. Gender\n2. Eye Color\n3. Date of Birth\n4. Height\n5. Weight `);
-    choice.toLowerCase(choice);
+    let choice = prompt(`Please enter in one of these trait(s).\nSelections:\n1. Gender\n2. Eye Color\n3. Date of Birth\n4. Height\n5. Weight `).toLowerCase();
+    
+    if(Number.isInteger(choice) == true){
+        choice = choice.parseInt()
+    }{ 
+}
 
     let group = people.filter(function(person){
         if (choice === person.gender ||
             choice === person.eyeColor ||
             choice === person.dob ||
-            choice === person.height ||
-            choice === person.weight ||         
+            choice == person.height ||
+            choice == person.weight ||         
             //choice === person.firstName ||  I'm not sure if these counts as traits.
             //choice === person.lastName ||
             //choice === person.parents ||
@@ -289,7 +293,7 @@ function searchBySingleTraits(people){
         }
         );
             displayPeople(group)
-           return group;
+            return group;
         }
     
 
