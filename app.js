@@ -380,14 +380,89 @@ and their relation to the found person. (i.e., parents, spouse, siblings.)
 
 function findPersonFamily(person, people) {
 
-    let allPeople = people.filter(function(fam) {
-    if (person.parents.includes(fam.id) || person.currentSpouse == fam.id || fam.parents.includes(person.id) || person.parents[0] === fam.parents[0]) { 
+    let parents = people.filter(function(fam) {
+    if (person.parents.includes(fam.id) ) { 
             return true;
         } 
-    });
-        let results = allPeople.map(function(type){
-        return ` ${type.firstName} ${type.lastName}`
-       })
-       return results;
+    })  
+    let results3 = parents.map(function(type){
+        return `${type.firstName} ${type.lastName}`
+    })
+
+    let spouse = people.filter(function(sp) {
+        if (person.currentSpouse == sp.id) {
+            return true;
+        }
+    })  
+    let results1 = spouse.map(function(type){
+        return `${type.firstName} ${type.lastName}`
+    })
+
+
+    let sibiling = people.filter(function(sib) {
+        if (person.parents.includes(sib.parents[0]) || sib.parents.includes(person.id) && sib.parents !== undefined) {
+            return true;
+        }
+    }) 
+    let results2 = sibiling.map(function(type){
+        return `${type.firstName} ${type.lastName}`
+    })
+        familyDisplay(results1, results2, results3);
     }
+
+
+function familyDisplay(spouse, siblings, parents){
+    if(spouse != []){
+    alert(
+        spouse.map(function (partner) {
+                return `${partner.firstName} ${partner.lastName}`;
+            })
+            .join("\n")
+        );} else {
+            alert("None")
+        }
+    if(spouse != []){
+        alert(
+            spouse.map(function (partner) {
+                    return `${partner.firstName} ${partner.lastName}`;
+                })
+                .join("\n")
+            );} else {
+                alert("None")
+            }
+    if(spouse != []){
+        alert(
+            spouse.map(function (partner) {
+                    return `${partner.firstName} ${partner.lastName}`;
+                })
+                .join("\n")
+            );} else {
+                alert("None")
+            }
+}
+
+
+
+
+//|||| person.parents[0] === sib.parents[0]|| 
+
+
+
+/*
+    I would break this down into 3 steps
+    find potential spouse array with filter()
+    find potential parents array with filter()
+    find potential siblings array with filter()
+    use another function to assemble the string that would say : 
+    "Spouse: ---name here or none, Parents: ---name1 here, name2 here or none, Siblings: ---name1 here, name2 here, ...etc, or none
+
+*/
+
+
+
+
+
+
+
+
 
