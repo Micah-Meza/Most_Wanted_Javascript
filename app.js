@@ -29,8 +29,8 @@ function app(people) {
             searchResults = searchByName(people);
             break;
         case "no":
-            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////                                                           ************************
-                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////                                                          ************************
+            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////                                                           DONE
+                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////                                                          DONE
             searchResults = searchByTraits(people);
             break;
         default:
@@ -171,7 +171,7 @@ function displayPerson(person) {
  * @returns {String}            The valid string input retrieved from the user.
  */
 
-
+/*
 function promptFor(question, valid) {
     do {
         var response = prompt(question).trim();
@@ -179,7 +179,7 @@ function promptFor(question, valid) {
     return response;
 }
 // End of promptFor()
-
+*/
 
 /**
  * This helper function checks to see if the value passed into input is a "yes" or "no."
@@ -212,16 +212,12 @@ function chars(input) {
 ////////////////////////////////////////////////////////////////////////////////////* End Of Starter Code *////////////////////////////////////////////////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-
-
-
-
 /*
 ( /5 points): As a developer, I want to make at least 15 consistent commits 
 with good, descriptive messages.
 */
 
-// 8
+// 12
 
 /*
 ( /5 points): As a developer, I want to run validation on any user input, 
@@ -296,21 +292,6 @@ function searchBySingleTraits(people){
             return group;
         }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 ( /15 points): As a user, I want to be able to search for someone based on 
 multiple traits (up to a maximum of five criteria at once).
@@ -321,12 +302,14 @@ people who are male with blue eyes.
 
 
 function searchByMultipleTraits(people){
-    let choice = []
+    let choice = [] 
+    let x = 1;
     let num = parseInt(prompt("How many traits would like to look for? "))
     for (let i = 0; i < num; i++){
-    choice.push(prompt(`Please list at least ${num} trait(s). `));
+    choice.push(prompt(`List trait number ${x}. `).toLowerCase());
+    x++
     }
-    let x = 0;
+   
     let group = people.filter(function(person){
         if (choice.includes(person.gender) &&
             choice.includes(person.eyeColor) ||
@@ -347,9 +330,6 @@ function searchByMultipleTraits(people){
            return group;
         }
     
-
-
-
 
 /*
 ( /10 points): As a user, I want to be able to look up someone’s information 
@@ -374,7 +354,6 @@ function displayPerson(person) {
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           Done
     alert(personInfo);
 }
-
 
 
 /*
@@ -405,7 +384,7 @@ and their relation to the found person. (i.e., parents, spouse, siblings.)
 function findPersonFamily(person, people) {
 
     let allPeople = people.filter(function(fam) {
-    if (person.parents.includes(fam.id) || person.currentSpouse === fam.id || fam.parents.includes(person.id) || person.parents[0] == fam.parents[0]) {
+    if (fam.parents == [] && person.parents.includes(fam.id) || person.currentSpouse === fam.id || fam.parents.includes(person.id) || fam.parents[0] == person.parents[0]) {
         let family = fam;   
             return true;
         } 
@@ -415,38 +394,4 @@ function findPersonFamily(person, people) {
        })
        return results;
     }
-
-
-
-/**    Bonus                                                                                Incomplete...............
-
-( /5 points): As a user, after locating a person, I want to see only 
-that person’s descendants (display the names of the descendants), 
-using recursion.
-*/
-/*
-function findPersonDescendants(person, people) {
-    let peoples = people
-    let i = 0;
-    if (peoples[i].parents === person.id && peoples[i].parents != null){
-        let array = people;
-        return people;
-    } else { 
-        
-        // i++;
-        return findPersonDescendants(person, people[i++]) 
-    }
-    let results = array;
-    return results;
-}
-*/
-
-
-
-
-
-
-
-
-
 
