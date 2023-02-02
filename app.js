@@ -240,6 +240,27 @@ function correctEntry(input) {
 }
 
 
+function validOption(){
+    let numSelection = 0;
+    numSelection = parseInt(prompt("How many traits would like to look for?  Enter up to 5"))
+     
+    switch (numSelection){
+        
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            return numSelection;
+        
+        default:
+            alert(`Enter between 1 and 5. Try again!`)
+            validOption();
+            break;
+    }
+}
+
+
 /*
 ( /10 points): As a user, I want to be able to search for someone based on 
 a single criterion • You should be able to find and return a list of people 
@@ -254,7 +275,8 @@ function searchByTraits(people){
             return singlePerson;
 
         case 2:
-            let person = searchByMultipleTraits(people);
+            let choice = validOption(); 
+            let person = searchByMultipleTraits(people, choice);
             return person;
 
         default:
@@ -300,10 +322,9 @@ people who are male with blue eyes.
 */
 
 
-function searchByMultipleTraits(people){
+function searchByMultipleTraits(people, num){
     let choice = [] 
     let x = 1;
-    let num = parseInt(prompt("How many traits would like to look for?  Enter up to 5"))
     for (let i = 0; i < num; i++){
         choice.push(prompt(`List trait number ${x}. `).toLowerCase());
         x++
