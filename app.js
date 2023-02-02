@@ -217,7 +217,7 @@ function chars(input) {
 with good, descriptive messages.
 */
 
-// 12
+// 16
 
 /*
 ( /5 points): As a developer, I want to run validation on any user input, 
@@ -238,6 +238,7 @@ function correctEntry(input) {
     let name = input[0].toUpperCase() + input.slice(1);
     return name;
 }
+
 
 /*
 ( /10 points): As a user, I want to be able to search for someone based on 
@@ -302,7 +303,7 @@ people who are male with blue eyes.
 function searchByMultipleTraits(people){
     let choice = [] 
     let x = 1;
-    let num = parseInt(prompt("How many traits would like to look for? "))
+    let num = parseInt(prompt("How many traits would like to look for?  Enter up to 5"))
     for (let i = 0; i < num; i++){
         choice.push(prompt(`List trait number ${x}. `).toLowerCase());
         x++
@@ -349,7 +350,7 @@ function displayPerson(person) {
             personInfo += `Current Spouse: ${person.currentSpouse}\n`;
 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////                                                           Done
-    alert(personInfo);
+     return personInfo;
 }
 
 
@@ -399,70 +400,72 @@ function findPersonFamily(person, people) {
     })
 
 
-    let sibiling = people.filter(function(sib) {
-        if (person.parents.includes(sib.parents[0]) || sib.parents.includes(person.id) && sib.parents !== undefined) {
+    let sibling = people.filter(function(sib) {
+        if (person.parents.includes(sib.parents[0]) && sib.parents !== undefined) {
             return true;
         }
     }) 
-    let results2 = sibiling.map(function(type){
+    let results2 = sibling.map(function(type){
         return `${type.firstName} ${type.lastName}`
     })
-        familyDisplay(results1, results2, results3);
+
+    let children = people.filter(function(child) {
+        if (child.parents.includes(person.id) && child.parents !== undefined) {
+            return true;
+        }
+    }) 
+    let results4 = children.map(function(type){
+        return `${type.firstName} ${type.lastName}`
+    })
+
+        familyDisplay(results1, results2, results3, results4);
+        let finalResult = [results1, results2, results3, results4];
+
+        var filtered = finalResult.filter(function (el) {
+            return el != [] && el.length != 0;
+          });
+        return filtered;
     }
 
 
-function familyDisplay(spouse, siblings, parents){
-    if(spouse != []){
+function familyDisplay(spouse, siblings, parents, children){
+    if(spouse != [] && spouse != null){
     alert(
         spouse.map(function (partner) {
-                return `${partner.firstName} ${partner.lastName}`;
+                return `Spouse: ${partner}`;
             })
             .join("\n")
         );} else {
-            alert("None")
+            alert(`Spouse: None`);
         }
-    if(spouse != []){
-        alert(
-            spouse.map(function (partner) {
-                    return `${partner.firstName} ${partner.lastName}`;
+    if(siblings != [] && siblings != null && siblings.length != 0){
+       
+        alert(`Siblings: ` +
+            siblings.map(function (brotherSister) { 
+                    return ` ${brotherSister}`;
                 })
                 .join("\n")
             );} else {
-                alert("None")
+                alert(`Siblings: None`);
             }
-    if(spouse != []){
-        alert(
-            spouse.map(function (partner) {
-                    return `${partner.firstName} ${partner.lastName}`;
+    if(parents != "" && parents != null && parents.length != []){
+        alert(`Parent(s): ` +
+            parents.map(function (parent) {
+                    return `${parent}`;
                 })
                 .join("\n")
             );} else {
-                alert("None")
+                alert(`Parent(s): None`);
+            }
+
+    if(children != "" && children != null && children.length != []){
+        alert(`Children: ` +
+            children.map(function (child) {
+                    return `${child}`;
+                })
+                .join("\n")
+            );} else {
+                alert(`Children: None`);
             }
 }
-
-
-
-
-//|||| person.parents[0] === sib.parents[0]|| 
-
-
-
-/*
-    I would break this down into 3 steps
-    find potential spouse array with filter()
-    find potential parents array with filter()
-    find potential siblings array with filter()
-    use another function to assemble the string that would say : 
-    "Spouse: ---name here or none, Parents: ---name1 here, name2 here or none, Siblings: ---name1 here, name2 here, ...etc, or none
-
-*/
-
-
-
-
-
-
-
-
 
